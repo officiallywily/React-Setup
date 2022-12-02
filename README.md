@@ -200,3 +200,110 @@ add to .eslintignore
 webpack.config.js
 ```
 
+### Jest & React Testing Library
+Install React testing library dependencies
+```
+npm install --save-dev @testing-library/react @testing-library/jest-dom
+```
+Install Jest dependecies
+```
+npm install --save-dev jest jest-environment-jsdom
+```
+Configure Jest
+In the terminal:
+```
+touch jest.config.js
+```
+add to jest.config.js
+```
+module.exports = {
+    collectCoverage: true,
+    collectCoverageFrom: ['src/**/*.{js,jsx}'],
+    coverageDirectory: 'coverage',
+    testEnvironment: 'jsdom',
+}
+```
+In the terminal:
+```
+touch jest.setup.js
+```
+add to jest.setup.js
+```
+import '@testing-library/jest-dom'
+```
+go to jest.config.js
+```
+module.exports = {
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{js,jsx}'],
+  coverageDirectory: 'coverage',
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+};
+```
+Integrate Jest with ESLint
+```
+npm install --save-dev eslint-plugin-jest
+```
+inside eslintrc.json edit the following properties
+```
+ "plugins": ["react", "jest"]
+```
+```
+ "extends": [
+        "plugin:react/recommended",
+        "plugin:jest/recommended",
+        "airbnb"
+    ]
+```
+```
+"env": {
+        "browser": true,
+        "es2021": true,
+        "jest/globals": true
+    }
+```
+
+make sure your eslintrc.json looks like this
+```
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest/globals": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:jest/recommended",
+        "airbnb"
+    ],
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "jest"
+    ],
+    "rules": {
+      "react/jsx-filename-extension": [1, {
+        "extensions": [".js", ".jsx"]}
+        ]
+    }
+}
+
+```
+
+
+
+Handy Sources:
+Setup React with Webpack and Babel:
+https://medium.com/age-of-awareness/setup-react-with-webpack-and-babel-5114a14a47e9#aa06
+
+ESLint & AirBnB & React:
+https://javascript.plainenglish.io/set-up-react-js-with-eslint-prettier-and-airbnb-cc015363a7c7
+
+Jest:
+https://dev.to/ivadyhabimana/setup-jest-and-react-testing-library-in-a-react-project-a-step-by-step-guide-1mf0
