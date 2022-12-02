@@ -62,6 +62,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: path.join(__dirname, "client/src", "index.jsx"),
   output: {
     path:path.resolve(__dirname, "client/dist"),
@@ -71,5 +72,87 @@ module.exports = {
       template: path.join(__dirname, "client/src", "index.html"),
     }),
   ],
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
 }
 ```
+
+### Setup Babel
+
+```
+npm install @babel/core babel-loader --save-dev
+npm install @babel/preset-env @babel/preset-react --save-dev
+```
+Go to webpack.config.js and add the following code after output
+```
+module: {
+    rules: [
+      {
+        test: /\.?(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      },
+    ]
+  }
+```
+Your file should now look like this:
+```
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  entry: path.join(__dirname, "client/src", "index.jsx"),
+  output: {
+    path:path.resolve(__dirname, "client/dist"),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.?(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "client/src", "index.html"),
+    }),
+  ],
+}
+```
+### Adding scripts to package.json
+
+Add this to your package.json
+```
+"scripts": {
+  "dev": "webpack serve",
+  "build": "webpack",
+}
+```
+Run locally
+```
+npm run dev
+```
+Build bundle
+```
+npm run build
+```
+
+
+
