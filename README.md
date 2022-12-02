@@ -37,6 +37,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
 ```
 Add this to the App.jsx
 ```
@@ -47,6 +48,7 @@ function App() {
 }
 
 export default App;
+
 ```
 In package.json, change the main property
 ```
@@ -170,17 +172,17 @@ npx eslint --init
 ```
 Windows
 ```
-.\node_modules\.bin\eslint --init
+./node_modules/.bin/eslint --init
 ```
 - How would you like to use ESLint? To check syntax, find problems, and enforce code style
 - What type of modules does your project use? JavaScript modules (import/export)
 - Which framework does your project use? React
-Does your project use TypeScript? No
+- Does your project use TypeScript? No
 - Where does your code run? Browser
-How would you like to define a style for your project? Use a popular style guide
-Which style guide do you want to follow? Airbnb (https://github.com/airbnb/javascript)
-What format do you want your config file to be in? JSON
-Would you like to install them now with npm? Yes
+- How would you like to define a style for your project? Use a popular style guide
+- Which style guide do you want to follow? Airbnb (https://github.com/airbnb/javascript)
+- What format do you want your config file to be in? JSON
+- Would you like to install them now with npm? Yes
 
 Add this to .eslintrc.json
 ```
@@ -189,5 +191,12 @@ Add this to .eslintrc.json
 "extensions": [".js", ".jsx"]}
 ]}
 ```
-
+OPTIONAL:
+```
+touch .eslintignore
+```
+add to .eslintignore
+```
+webpack.config.js
+```
 
