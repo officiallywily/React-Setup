@@ -30,11 +30,46 @@ Add this to the index.html we just created
   </body>
 </html>
 ```
-Add this to the index.js
+Add this to the index.jsx
 ```
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+```
+Add this to the App.jsx
+```
+import React from 'react';
+
+function App() {
+  return <h1>Hello I Am App</h1>;
+}
+
+export default App;
+```
+
+### Setup Webpack
+
+```
+npm install webpack webpack-cli webpack-dev-server --save-dev
+npm install html-webpack-plugin --save-dev
+touch webpack.config.js
+```
+Add this to webpack.config.js
+```
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: path.join(__dirname, "client/src", "index.jsx"),
+  output: {
+    path:path.resolve(__dirname, "client/dist"),
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "client/src", "index.html"),
+    }),
+  ],
+}
 ```
