@@ -182,7 +182,8 @@ Windows
 - How would you like to define a style for your project? Use a popular style guide
 - Which style guide do you want to follow? Airbnb (https://github.com/airbnb/javascript)
 - What format do you want your config file to be in? JSON
-- Would you like to install them now with npm? Yes
+- Would you like to install them now? Yes
+- Which package manager do you want to use? npm
 
 Add this to .eslintrc.json
 ```
